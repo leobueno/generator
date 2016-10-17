@@ -1,0 +1,11 @@
+@(packageName: String, tables: Map[String, Array[Map[String, String]]])
+
+package @packageName
+
+@for((tableName, columns) <- tables) {
+    case class @tableName (
+        @for(column <- columns) {
+            @column("COLUMN_NAME")
+        }
+    )
+}
